@@ -3,18 +3,6 @@
 
 # Liste de répertoires et dossiers à exclure
 Liste_repertoires=(
-    "utilisateurs themezeguillaume guillaume equipepuce isabellebouchoule"
-    "adresses_ip 192.168.0.24 10.117.53.101 10.117.51.227  10.117.48.25"
-    "mot_de_passe_ssh 36363636 atomsheep PuceRubidium87 isabellenoeud9L"
-    "analyses_Guillaume /Users/themezeguillaume/Documents/Ordi_Isa/analyses_Guillaume /home/guillaume/Documents/Documents_synchro/analyses_Guillaume /mnt/data/DonneesEquipePuce/analysedata/analyses_jupyter/analyses_Guillaume /home/isabellebouchoule/Puce/analysedata/analyses_jupyter/analyses_Guillaume Figures-Resultat"
-    "OrdiProgrammation /Users/themezeguillaume/Desktop/Documents_Clef/Traveaux/Git/Mes-Projets/Ordi_Programmation /home/guillaume/Documents/Documents_synchro/Ordi_Programmation /mnt/data/DonneesEquipePuce/analysedata/analyses_jupyter/analyses_Guillaume/Ordi_Programmation /home/isabellebouchoule/Puce/analysedata/analyses_jupyter/analyses_Guillaume/Ordi_Programmation Figures-Resultat"
-    "synchronise /Users/themezeguillaume/Desktop/Documents_Clef/Traveaux/Git/Mes-Projets/Ordi_Programmation/Connection_machine/synchroniser_ordi.sh /home/guillaume/Documents/Documents_synchro/synchroniser_ordi.sh Chemin_equipepuce Chemin_machine Figures-Resultat"
-    "sshpass_instal /Users/themezeguillaume/Desktop/Documents_Clef/Traveaux/Git/Mes-Projets/Ordi_Programmation/Connection_machine/sshpass_instal.sh /home/guillaume/Documents/Documents_synchro/sshpass_instal.sh  Chemin_equipepuce Chemin_machine Figures-Resultat"
-    "Dataparametre /Users/themezeguillaume/Documents/Ordi_Isa/Donnees/ /home/guillaume/Documents/.. /mnt/data/DonneesEquipePuce/analysedata/analyses_jupyter/analyse_DR_2022/parameters.py Rep_M "
-    "scan059mnt /Users/themezeguillaume/Documents/Ordi_Isa/Donnees/mnt/ /home/guillaume/Documents/.. /mnt/data/DonneesEquipePuce/analysedata/2023-10-04/scan059 Rep_M "
-    "scan059media /Users/themezeguillaume/Documents/Ordi_Isa/Donnees/media/ /home/guillaume/Documents/.. /media/pucemanip/manip/data/2023-10-04/scan059 Rep_M "
-    #"analyses_Lea /Users/themezeguillaume/Documents/Ordi_Isa /Users/themezeguillaume/Desktop/Etude2023/PHD/Etudes/Ordi_Programmation /mnt/data/DonneesEquipePuce/analysedata/analyses_jupyter/analyses_Lea /home/isabellebouchoule/Puce/analysedata/analyses_jupyter/analyses_Lea"
-    "Documentsynchro /Users/themezeguillaume/Documents/Doucments_synchro /home/guillaume/Documents/Documents_synchro /mnt/data/DonneesEquipePuce/analysedata/analyses_jupyter/analyses_Guillaume/Documents_synchro /home/isabellebouchoule/Puce/analysedata/analyses_jupyter/Documents_synchro "
     "repertoire1 rep_A1 rep_B1 rep_C1 rep_D1 Exc_11 Exc_12"
     "repertoire2 rep_A2 rep_B2 rep_C2 rep_D2 Exc_21 Exc_22"
     "repertoire3 rep_A3 rep_B3 rep_C3 rep_D3 Exc_31 Exc_32 Exc_33"
