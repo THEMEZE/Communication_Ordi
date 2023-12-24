@@ -39,5 +39,7 @@ $RECYCLE.BIN/
 *.log
 
 
+# Ignorer ces fifre
+gitignore.txt
 Connection_machine/synchroniser_ordi_03_11_23.sh
 Connection_machine/synchroniser_ordi.sh
