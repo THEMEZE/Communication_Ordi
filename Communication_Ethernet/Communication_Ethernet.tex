@@ -1,0 +1,139 @@
+%\documentclass{article}
+%\usepackage{listings} % Pour afficher du code MATLAB
+%\usepackage{color}    % Pour la coloration syntaxique du code
+
+%\begin{document}
+
+%\title{Conseils pour utiliser MATLAB}
+%\author{Votre nom}
+%\date{\today}
+%\maketitle
+
+\section{Matériel nécessaire :}
+\begin{enumerate}
+    \item Deux ordinateurs équipés de ports Ethernet (RJ45).
+    \item Un câble Ethernet, généralement de type Cat5e ou Cat6, pour connecter les deux ordinateurs.
+\end{enumerate}
+
+\section{Étapes à suivre :}
+\begin{enumerate}
+    \item \textbf{Configurer les adresses IP :} Pour permettre la communication entre les deux ordinateurs, il est nécessaire d'attribuer des adresses IP statiques à chacun dans le même sous-réseau. Par exemple, si vous utilisez l'adresse IP \texttt{192.168.1.2} pour l'ordinateur A, utilisez \texttt{192.168.1.3} pour l'ordinateur B. Assurez-vous également d'utiliser le même masque de sous-réseau, par exemple, \texttt{255.255.255.0}.
+
+    \item \textbf{Connectez les ordinateurs :} Branchez une extrémité du câble Ethernet dans le port Ethernet de l'ordinateur A et l'autre extrémité dans le port Ethernet de l'ordinateur B.
+
+    \item \textbf{Configurer les pare-feux :} Assurez-vous que les pare-feux des deux ordinateurs autorisent la communication via le réseau local. Il peut être nécessaire d'ajouter une règle pour permettre le trafic entre les adresses IP des deux ordinateurs.
+
+    \item \textbf{Développer le programme MATLAB :} Écrivez un programme MATLAB sur l'ordinateur A pour collecter les informations que vous souhaitez transférer vers l'ordinateur B. MATLAB offre des fonctionnalités de communication réseau, telles que les sockets, que vous pouvez utiliser pour envoyer des données.
+    
+\begin{lstlisting}[language=Matlab, caption={Programme MATLAB sur l'ordinateur A (l'émetteur)}]
+% Adresse IP de l'ordinateur B
+adresseIPB = '192.168.1.3'; % Remplacez par l'adresse IP de l'ordinateur B
+
+% Port sur lequel l'ordinateur B écoute
+portB = 12345; % Remplacez par le port approprié sur l'ordinateur B
+
+% Créer des données à envoyer
+donnees = [1, 2, 3, 4, 5];
+
+% Ouvrir une connexion TCP/IP
+clientSocket = tcpip(adresseIPB, portB);
+fopen(clientSocket);
+
+% Envoyer des données
+fwrite(clientSocket, donnees, 'double');
+
+% Fermer la connexion
+fclose(clientSocket);
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Programme Python sur l'ordinateur A (l'émetteur)}]
+import socket
+
+# Adresse IP de l'ordinateur B
+adresseIPB = '192.168.1.3'  # Remplacez par l'adresse IP de l'ordinateur B
+portB = 12345  # Remplacez par le port approprié sur l'ordinateur B
+
+# Créer des données à envoyer
+donnees = [1, 2, 3, 4, 5]
+
+# Créer une socket TCP/IP
+clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Établir la connexion vers l'ordinateur B
+clientSocket.connect((adresseIPB, portB))
+
+# Envoyer des données
+donnees_envoyees = bytearray()
+for valeur in donnees:
+    donnees_envoyees.extend(valeur.to_bytes(8, byteorder='big'))  # Convertir en octets (8 bytes par valeur)
+
+clientSocket.sendall(donnees_envoyees)
+
+# Fermer la connexion
+clientSocket.close()
+\end{lstlisting}
+
+
+    \item \textbf{Programme sur l'ordinateur B :} Rédigez un programme sur l'ordinateur B qui attend de recevoir les données de l'ordinateur A. Ce programme doit également utiliser des sockets pour écouter les connexions entrantes.
+    
+\begin{lstlisting}[language=Matlab, caption={Programme MATLAB sur l'ordinateur B (le récepteur)}]
+% Port sur lequel l'ordinateur B écoute
+portB = 12345; % Remplacez par le port approprié
+
+% Ouvrir une connexion TCP/IP en attente
+serveurSocket = tcpip('0.0.0.0', portB, 'NetworkRole', 'Server');
+fopen(serveurSocket);
+
+% Attendre les données de l'ordinateur A
+donneesRecues = fread(serveurSocket, serveurSocket.BytesAvailable, 'double');
+
+% Afficher les données reçues
+disp('Données reçues :');
+disp(donneesRecues);
+
+% Fermer la connexion
+fclose(serveurSocket);
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Programme Python sur l'ordinateur B (le récepteur)}]
+import socket
+
+# Port sur lequel l'ordinateur B écoute
+portB = 12345  # Remplacez par le port approprié
+
+# Adresse IP à écouter (0.0.0.0 signifie toutes les interfaces)
+adresseIP = '0.0.0.0'
+
+# Créer une socket TCP/IP en attente
+serveurSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serveurSocket.bind((adresseIP, portB))
+serveurSocket.listen(1)  # Attendre au maximum une connexion
+
+print(f"En attente de connexion sur le port {portB}...")
+
+# Accepter la connexion entrante
+clientSocket, clientAdresse = serveurSocket.accept()
+print(f"Connexion acceptée depuis {clientAdresse}")
+
+# Recevoir les données de l'ordinateur A
+donneesRecues = clientSocket.recv(1024)  # Utilisez une taille de tampon appropriée
+print("Données reçues :", donneesRecues.decode())
+
+# Fermer la connexion
+clientSocket.close()
+serveurSocket.close()
+\end{lstlisting}
+
+
+
+
+    \item \textbf{Transfert de données :} Dans le programme MATLAB de l'ordinateur A, utilisez la connexion réseau pour envoyer les données à l'ordinateur B. Dans le programme de l'ordinateur B, recevez et traitez les données reçues.
+
+    \item \textbf{Gestion des erreurs et de la sécurité :} Assurez-vous de prendre en charge la gestion des erreurs de communication et ajoutez des mécanismes de sécurité si nécessaire, notamment le chiffrement des données si vous travaillez avec des informations sensibles.
+
+    \item \textbf{Testez la communication :} Exécutez les deux programmes sur les ordinateurs A et B et vérifiez que les données sont correctement transférées.
+\end{enumerate}
+
+
+%\end{document}
+
