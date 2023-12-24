@@ -1,0 +1,43 @@
+# Fichiers système
+__pycache__/
+
+# Fichiers de compilation
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyzw
+*.pyc
+
+# Fichiers de l'environnement virtuel
+venv/
+env/
+
+# Fichiers de l'éditeur
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+*.bk
+
+# Fichiers système macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Fichiers système Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Fichiers de logs
+*.log
+
+
+Connection_machine/synchroniser_ordi_03_11_23.sh
+Connection_machine/synchroniser_ordi.sh
